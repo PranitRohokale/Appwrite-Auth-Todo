@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { account } from "../Appwrite/AppwriteConfig";
 
@@ -21,6 +21,17 @@ const Login = () => {
       );
     }
   };
+
+  useEffect(() => {
+    const getData = account.get();
+    getData.then(
+      (res) => {
+        console.log("already logged : ", res);
+        navigate("/profile");
+      },
+      (error) => console.log("ERROR :" + error)
+    );
+  }, []);
 
   return (
     <>
