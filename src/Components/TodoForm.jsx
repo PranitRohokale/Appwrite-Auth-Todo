@@ -5,6 +5,8 @@ import { TODO_COLLECTION_ID, DATABASE_ID } from "../constants";
 
 const TodoForm = () => {
   const [todo, setTodo] = useState("");
+  //   const [reloadFlag, setReloadFlag] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!todo) return;
@@ -18,6 +20,7 @@ const TodoForm = () => {
         }
       );
       promise.then((res) => console.log("Added")).finally(() => setTodo(""));
+      window.location.reload(true);
     } catch (error) {
       console.log(error);
     }
